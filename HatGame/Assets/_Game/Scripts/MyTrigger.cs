@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class MyTrigger : MonoBehaviour
 {
@@ -17,8 +19,13 @@ public class MyTrigger : MonoBehaviour
             Destroy(this.gameObject);
 
         }else if (target.gameObject.CompareTag("Point"))
+
         {
-            gameController.score++;
+            if(gameController.gameStarted)
+            {
+                gameController.score++;
+                gameController.scoreView.text = "Score: " + gameController.score;
+            }  
             Destroy(this.gameObject);
         }
     }
