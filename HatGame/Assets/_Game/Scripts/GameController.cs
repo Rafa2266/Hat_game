@@ -7,23 +7,31 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public int score;
-    public int currentTime;
+    [HideInInspector]public int score, highscore;
+    [HideInInspector] public int currentTime;
     public GameObject player;
     [SerializeField] private int startTime;
-    public bool gameStarted;
+    [HideInInspector] public bool gameStarted;
     public TextMeshProUGUI timeView;
     public TextMeshProUGUI scoreView;
+    public TextMeshProUGUI highscoreView;
 
 
 
     private UIController uiController;
 
     // Start is called before the first frame update
+
+    //private void Awake()
+    //{
+    //    PlayerPrefs.DeleteKey("highscore");
+    //}
     void Start()
     {
         uiController = FindObjectOfType<UIController>();
+        highscore= getHighscore();
         ResetGame();
+
     }
 
     // Update is called once per frame
@@ -39,11 +47,13 @@ public class GameController : MonoBehaviour
         Vector3 aux = player.transform.position;
         player.transform.position = new Vector3(0f, aux.y, aux.z);
         scoreView.text = "";
+        highscoreView.text = "HighScore: " + highscore;
     }
 
     public void GameOver()
     {
         gameStarted = false;
+        saveScore();
         uiController.panelStart.SetActive(false);
         uiController.panelGameOver.SetActive(true);
         CancelCountdownTime();
@@ -61,7 +71,7 @@ public class GameController : MonoBehaviour
     }
     public void InvokeCountdownTime()
     {
-        InvokeRepeating("CountDownTime", 1f, 1f);
+        InvokeRepeating("CountDownTime", 0.25f, 1f);
     }
     public void CancelCountdownTime()
     {
@@ -83,5 +93,17 @@ public class GameController : MonoBehaviour
             return;
         }
         
+    }
+    public void saveScore()
+    {
+        if(highscore < score)
+        {
+            highscore= score;
+            PlayerPrefs.SetInt("highscore", highscore);
+        }
+    }
+    public int getHighscore()
+    {
+        return PlayerPrefs.GetInt("highscore");
     }
 }

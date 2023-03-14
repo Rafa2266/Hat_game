@@ -45,6 +45,7 @@ public class UIController : MonoBehaviour
         gameController.CancelCountdownTime();
         panelStart.gameObject.SetActive(false);
         panelPause.gameObject.SetActive(true);
+        Time.timeScale= 0f;
     }
     public void ButtonResume()
     {
@@ -52,6 +53,7 @@ public class UIController : MonoBehaviour
         gameController.InvokeCountdownTime();
         panelPause.SetActive(false);
         panelStart.gameObject.SetActive(true);
+        Time.timeScale= 1f;
     }
     public void ButtonRestart()
     {

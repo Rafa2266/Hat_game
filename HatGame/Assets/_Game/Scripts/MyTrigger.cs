@@ -12,6 +12,14 @@ public class MyTrigger : MonoBehaviour
     {
         gameController=FindObjectOfType<GameController>();
     }
+
+    private void Update()
+    {
+        if(gameController.currentTime<=0f)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D target)
     {
         if (target.gameObject.CompareTag("Destroyer"))

@@ -6,6 +6,7 @@ public class SpawnController : MonoBehaviour
 {
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private float topDistance, lateralMargin;
+    [SerializeField] private Transform allBallsParent;
     private Vector2 screenWidth;
     private GameController gameController;
 
@@ -45,5 +46,6 @@ public class SpawnController : MonoBehaviour
         yield return new WaitForSeconds(0f);
         transform.position=new Vector2(Random.Range(-screenWidth.x + lateralMargin,screenWidth.x - lateralMargin),transform.position.y);
         GameObject tempBallPrefab= Instantiate(ballPrefab,transform.position,Quaternion.identity) as GameObject;
+        tempBallPrefab.transform.parent = allBallsParent;
     }
 }
