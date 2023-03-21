@@ -15,7 +15,7 @@ public class MyTrigger : MonoBehaviour
 
     private void Update()
     {
-        if(gameController.currentTime<=0f)
+        if(gameController.currentTime<=0f || gameController.getStartTime()==gameController.currentTime)
         {
             Destroy(this.gameObject);
         }

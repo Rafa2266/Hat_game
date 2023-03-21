@@ -18,7 +18,7 @@ public class SpawnController : MonoBehaviour
     void Start()
     {
         gameController= FindObjectOfType<GameController>();
-        InvokeRepeating("SpawnInvoke",2.0f,Random.Range(2.0f,3.0f));
+        InvokeRepeating("SpawnInvoke",2.0f,Random.Range(1.0f,2.5f));
     }
 
     // Update is called once per frame

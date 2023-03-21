@@ -67,6 +67,7 @@ public class UIController : MonoBehaviour
         panelGameOver.gameObject.SetActive(false);
         panelMainMenu.gameObject.SetActive(true);
         gameController.ResetGame();
-        
+        Time.timeScale = 1f;
+
     }
 }

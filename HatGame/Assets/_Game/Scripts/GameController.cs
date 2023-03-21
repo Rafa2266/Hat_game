@@ -34,6 +34,11 @@ public class GameController : MonoBehaviour
 
     }
 
+    public int getStartTime()
+    {
+        return startTime;
+    }
+
     // Update is called once per frame
     void Update()
     {
